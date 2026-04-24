@@ -50,3 +50,6 @@ pnpm-debug.log*
 # Coverage
 coverage
 *.lcov
+
+# TypeScript incremental build info
+*.tsbuildinfo
