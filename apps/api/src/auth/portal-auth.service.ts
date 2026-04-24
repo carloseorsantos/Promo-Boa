@@ -9,7 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../database/prisma.service';
 import { RegisterUserDto, LoginDto } from './dto/auth.dto';
 
-interface PortalTokens {
+export interface PortalTokens {
   accessToken: string;
   account: { id: string; email: string };
 }

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { FlyerSummary, SupermarketDetail } from '@promo-boa/shared';
-import { CreateFlyerInput } from '@promo-boa/shared';
+import { FlyerSummary, SupermarketDetail, CreateFlyerInput, CreateSupermarketInput, UpdateSupermarketInput } from '@promo-boa/shared';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000/v1';
 
@@ -75,12 +74,12 @@ export const portalApi = {
     await http.delete(`/portal/flyers/${flyerId}`);
   },
 
-  createSupermarket: async (dto: Omit<CreateFlyerInput, 'validFrom' | 'validTo'>): Promise<SupermarketDetail> => {
+  createSupermarket: async (dto: CreateSupermarketInput): Promise<SupermarketDetail> => {
     const { data } = await http.post('/portal/supermarkets', dto);
     return data;
   },
 
-  updateSupermarket: async (id: string, dto: Partial<Record<string, unknown>>): Promise<SupermarketDetail> => {
+  updateSupermarket: async (id: string, dto: UpdateSupermarketInput): Promise<SupermarketDetail> => {
     const { data } = await http.patch(`/portal/supermarkets/${id}`, dto);
     return data;
   },
