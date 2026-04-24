@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(uuid())
+  email           String   @unique
+  passwordHash    String?
+  name            String?
+  avatarUrl       String?
+  oauthProvider   String?
+  oauthProviderId String?
+  expoPushToken   String?
+  preferredLocale String   @default("pt-BR")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  favorites     Favorite[]
+  refreshTokens RefreshToken[]
+
+  @@index([email])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([token])
+}
+
+model SupermarketAccount {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  supermarket  Supermarket?
+
+  @@index([email])
+}
+
+model Supermarket {
+  id          String             @id @default(uuid())
+  accountId   String             @unique
+  account     SupermarketAccount @relation(fields: [accountId], references: [id])
+  name        String
+  slug        String             @unique
+  logoUrl     String?
+  address     String
+  city        String
+  state       String
+  country     String             @default("BR")
+  latitude    Float
+  longitude   Float
+  phone       String?
+  website     String?
+  isVerified  Boolean            @default(false)
+  isActive    Boolean            @default(true)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  flyers    Flyer[]
+  favorites Favorite[]
+
+  @@index([latitude, longitude])
+  @@index([city])
+  @@index([isActive])
+}
+
+model Flyer {
+  id             String      @id @default(uuid())
+  supermarketId  String
+  supermarket    Supermarket @relation(fields: [supermarketId], references: [id], onDelete: Cascade)
+  title          String
+  pdfUrl         String
+  pdfStorageKey  String
+  thumbnailUrl   String?
+  validFrom      DateTime
+  validTo        DateTime
+  isActive       Boolean     @default(true)
+  uploadedAt     DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([supermarketId, isActive])
+  @@index([validTo])
+}
+
+model Favorite {
+  id             String      @id @default(uuid())
+  userId         String
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  supermarketId  String
+  supermarket    Supermarket @relation(fields: [supermarketId], references: [id], onDelete: Cascade)
+  notifyEnabled  Boolean     @default(true)
+  createdAt      DateTime    @default(now())
+
+  @@unique([userId, supermarketId])
+  @@index([userId])
+}

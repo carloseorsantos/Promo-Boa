@@ -1,0 +1,48 @@
+{
+  "tabs": {
+    "home": "Home",
+    "favorites": "Favorites",
+    "profile": "Profile"
+  },
+  "home": {
+    "locating": "Finding your location...",
+    "noSupermarkets": "No supermarkets found in this area."
+  },
+  "supermarket": {
+    "currentFlyer": "Current flyer",
+    "page": "Page {{current}} of {{total}}",
+    "noActiveFlyer": "No active flyer at the moment."
+  },
+  "favorites": {
+    "loginRequired": "Sign in to see your favorites",
+    "loginSubtitle": "Save your favorite supermarkets and get notified when new flyers are posted.",
+    "empty": "No favorites yet",
+    "emptySubtitle": "Add supermarkets to your favorites to follow their promotions.",
+    "notifyNewFlyer": "Notify on new flyer"
+  },
+  "profile": {
+    "account": "Account",
+    "language": "Language",
+    "logout": "Log out",
+    "guest": "Sign in for more features"
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "createAccount": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "noAccount": "No account? Sign up",
+    "hasAccount": "Already have an account? Sign in",
+    "agreeTerms": "I agree to the terms of use and privacy policy"
+  },
+  "common": {
+    "login": "Sign in",
+    "register": "Sign up"
+  },
+  "flyer": {
+    "expired": "Expired",
+    "expiresIn": "Expires in {{days}} day(s)",
+    "validUntil": "Valid until {{date}}"
+  }
+}

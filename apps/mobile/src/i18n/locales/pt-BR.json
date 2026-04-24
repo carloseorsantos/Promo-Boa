@@ -1,0 +1,48 @@
+{
+  "tabs": {
+    "home": "Início",
+    "favorites": "Favoritos",
+    "profile": "Perfil"
+  },
+  "home": {
+    "locating": "Localizando você...",
+    "noSupermarkets": "Nenhum supermercado encontrado nesta área."
+  },
+  "supermarket": {
+    "currentFlyer": "Folheto atual",
+    "page": "Página {{current}} de {{total}}",
+    "noActiveFlyer": "Nenhum folheto ativo no momento."
+  },
+  "favorites": {
+    "loginRequired": "Faça login para ver seus favoritos",
+    "loginSubtitle": "Salve seus supermercados preferidos e receba notificações de novos folhetos.",
+    "empty": "Nenhum favorito ainda",
+    "emptySubtitle": "Adicione supermercados aos seus favoritos para acompanhar as promoções.",
+    "notifyNewFlyer": "Notificar novo folheto"
+  },
+  "profile": {
+    "account": "Conta",
+    "language": "Idioma",
+    "logout": "Sair",
+    "guest": "Entre para aproveitar mais"
+  },
+  "auth": {
+    "welcomeBack": "Bem-vindo de volta",
+    "createAccount": "Criar conta",
+    "email": "E-mail",
+    "password": "Senha",
+    "name": "Nome",
+    "noAccount": "Não tem conta? Cadastre-se",
+    "hasAccount": "Já tem conta? Entrar",
+    "agreeTerms": "Aceito os termos de uso e política de privacidade"
+  },
+  "common": {
+    "login": "Entrar",
+    "register": "Cadastrar"
+  },
+  "flyer": {
+    "expired": "Expirado",
+    "expiresIn": "Expira em {{days}} dia(s)",
+    "validUntil": "Válido até {{date}}"
+  }
+}
