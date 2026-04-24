@@ -9,23 +9,26 @@ interface AuthState {
   logout: () => void;
 }
 
-export const useAuthStore = create<AuthState>(() => ({
-  account: typeof window !== 'undefined' ? (() => {
-    const raw = localStorage.getItem('portal_account');
-    return raw ? JSON.parse(raw) : null;
-  })() : null,
+export const useAuthStore = create<AuthState>((set) => ({
+  account:
+    typeof window !== 'undefined'
+      ? (() => {
+          const raw = localStorage.getItem('portal_account');
+          return raw ? (JSON.parse(raw) as { id: string; email: string }) : null;
+        })()
+      : null,
   supermarket: null,
 
-  setSession: (token, account) => {
+  setSession: (token: string, account: { id: string; email: string }) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('portal_access_token', token);
       localStorage.setItem('portal_account', JSON.stringify(account));
     }
-    useAuthStore.setState({ account });
+    set({ account });
   },
 
-  setSupermarket: (supermarket) => {
-    useAuthStore.setState({ supermarket });
+  setSupermarket: (supermarket: SupermarketDetail) => {
+    set({ supermarket });
   },
 
   logout: () => {
@@ -33,6 +36,6 @@ export const useAuthStore = create<AuthState>(() => ({
       localStorage.removeItem('portal_access_token');
       localStorage.removeItem('portal_account');
     }
-    useAuthStore.setState({ account: null, supermarket: null });
+    set({ account: null, supermarket: null });
   },
 }));
